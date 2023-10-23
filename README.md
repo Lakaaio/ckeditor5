@@ -36,6 +36,10 @@
 
 `git clone git@github.com:ckeditor/ckeditor5.git`
 
+1.5 - You might want to change the branch to get the version as you repo, or you can update it
+
+`git checkout v38.0.1`
+
 2 - Move to the packages folder
 
 `cd ckeditor5/packages`
