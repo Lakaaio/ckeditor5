@@ -36,10 +36,6 @@
 
 `git clone git@github.com:ckeditor/ckeditor5.git`
 
-1.5 - You might want to change the branch to get the version as you repo, or you can update it
-
-`git checkout v38.0.1`
-
 2 - Move to the packages folder
 
 `cd ckeditor5/packages`
@@ -105,7 +101,7 @@ eslint: {
 5 - import the local package
 
 `npm i <path to package>/packages/ckeditor5-build-classic`
-> this should this line in package.json
+> this should add this line in package.json
 > "@lakaaio/ckeditor5-build-classic": "file:<path>ckeditor5-build-classic",
 
 6 - delete the old packages
