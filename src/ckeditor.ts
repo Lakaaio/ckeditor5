@@ -22,6 +22,7 @@ import ImageUpload from '@ckeditor/ckeditor5-image/src/imageUpload';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import { Alignment } from '@ckeditor/ckeditor5-alignment';
 import { Font } from '@ckeditor/ckeditor5-font';
+import { LinkImage } from '@ckeditor/ckeditor5-link';
 
 export default class ClassicEditor extends ClassicEditorBase {
 	public static override builtinPlugins = [
@@ -43,6 +44,7 @@ export default class ClassicEditor extends ClassicEditorBase {
 		ImageUpload,
 		ImageStyle,
 		Alignment,
-		Font
+		Font,
+		LinkImage
 	];
 }
