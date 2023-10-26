@@ -20,6 +20,8 @@ import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageUpload';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
+import { Alignment } from '@ckeditor/ckeditor5-alignment';
+import { Font } from '@ckeditor/ckeditor5-font';
 
 export default class ClassicEditor extends ClassicEditorBase {
 	public static override builtinPlugins = [
@@ -39,6 +41,8 @@ export default class ClassicEditor extends ClassicEditorBase {
 		ImageToolbar,
 		ImageResize,
 		ImageUpload,
-		ImageStyle
+		ImageStyle,
+		Alignment,
+		Font
 	];
 }
