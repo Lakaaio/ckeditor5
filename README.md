@@ -1,129 +1,20 @@
-# CKEditor 5 classic editor build custom for Lakaa
+CKEditor&nbsp;5 classic editor implementation
+========================================
 
-<details>
- <summary> differences with official classic editor plugin</summary>
+[![npm version](https://badge.fury.io/js/%40ckeditor%2Fckeditor5-editor-classic.svg)](https://www.npmjs.com/package/@ckeditor/ckeditor5-editor-classic)
+[![Coverage Status](https://coveralls.io/repos/github/ckeditor/ckeditor5/badge.svg?branch=master)](https://coveralls.io/github/ckeditor/ckeditor5?branch=master)
+[![Build Status](https://travis-ci.com/ckeditor/ckeditor5.svg?branch=master)](https://app.travis-ci.com/github/ckeditor/ckeditor5)
 
-### Plugins added:
-+ Highlight
-+ Underline
-+ SimpleUploadAdapter
-+ ImageResize
+The classic editor implementation for CKEditor&nbsp;5.
 
-### Plugins Removed:
-- UploadAdapter
-- Autoformat
-- CloudServices
-- BlockQuote
-- CKBox
-- CKFinder
-- CloudServices
-- EasyImage
-- ImageCaption
-- Indent
-- MediaEmbed
-- PasteFromOffice
-- PictureEditing
-- TableToolbar
-- TextTransformation
-</details>
+This package contains the [`ClassicEditor`](https://ckeditor.com/docs/ckeditor5/latest/api/module_editor-classic_classiceditor-ClassicEditor.html) class. Follow there to learn more about this type of editor and how to initialize it.
 
+This package contains the source version of the classic editor. This kind of editor implementation is also available as a ready-to-use [classic build](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic). Read more about [CKEditor&nbsp;5 predefined builds](https://ckeditor.com/docs/ckeditor5/latest/installation/advanced/alternative-setups/predefined-builds.html) in the CKEditor&nbsp;5 documentation.
 
-## How to change plugins
+## Documentation
 
-### install the package localy
+See the [`@ckeditor/ckeditor5-editor-classic` package](https://ckeditor.com/docs/ckeditor5/latest/api/editor-classic.html) page in [CKEditor&nbsp;5 documentation](https://ckeditor.com/docs/ckeditor5/latest/).
 
-1 - Install the [original repository](https://github.com/ckeditor/ckeditor5)
+## License
 
-`git clone git@github.com:ckeditor/ckeditor5.git`
-
-2 - Move to the packages folder
-
-`cd ckeditor5/packages`
-
-3 - Clone the custom build from this repository
-
-`git clone git@github.com:Lakaaio/ckeditor5-build-classic-custom.git`
-
-4 - Remove the original classic cuild
-
-`rm -rf ckeditor5-build-classic`
-
-5 - Rename the custom build
-
-`mv ckeditor5-build-classic-custom ckeditor5-build-classic`
-
-6 - Move to the classic build folder
-
-`cd ckeditor5-build-classic`
-
-7 - Make all modification needed to the pacakge
->Most changes happen in the src/ckeditor.ts file.
->If new plugins are added, dont forget to add them in the package.json.
->Remember that the new plugin must match the version of all the others.
-
-8 - Install dependencies with npm
-
-`npm i --legacy-peer-deps`
-
-9 - build the package
-
-`npm run build`
-
-<details>
- <summary>Test the changes localy</summary>
-
-1 - Move to the frontend of the main project
-
-2 - Disable the linter in `quasar.conf.js`
-
-```
-[...]
-eslint: {
-	// fix: true,
-	// include = [],
-	// exclude = [],
-	// rawOptions = {},
-	warnings: false,
-	errors: false,
-},
-[...]
-```
-
-3 - Modify the import of the plugin in `Editor.vue`
-
-~~import ClassicEditor from '@lakaaio/ckeditor5-build-classic';~~
-`import '@lakaaio/ckeditor5-build-classic';`
-
-4 - Remove the dependecy from git in `package.json`
-
-~~"@lakaaio/ckeditor5-build-classic": "github:Lakaaio/ckeditor5-build-classic-custom",~~
-
-5 - import the local package
-
-`npm i <path to package>/packages/ckeditor5-build-classic`
-> this should add this line in package.json
-> "@lakaaio/ckeditor5-build-classic": "file:<path>ckeditor5-build-classic",
-
-6 - delete the old packages
-`rm -rf node-modules`
-
-7 - Install dependencies with npm
-
-`npm i`
-
-8 - Test
-> You may want to modify Editor.vue to implement the features of the new plugins
-
-9 - Undo steps 2, 3, 4
-</details>
-
-<details>
- <summary>Make the changes permanent</summary>
-
-1 - Make sure that the changes are working localy
-
-2 - Add, commit and push to github
-
-3 - List any changes to the plugin list on top of the readme
-
-</details>
+Licensed under the terms of [GNU General Public License Version 2 or later](http://www.gnu.org/licenses/gpl.html). For full details about the license, please check the `LICENSE.md` file or [https://ckeditor.com/legal/ckeditor-oss-license](https://ckeditor.com/legal/ckeditor-oss-license).
