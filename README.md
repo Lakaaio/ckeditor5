@@ -63,7 +63,7 @@
 
 8 - Install dependencies with npm
 
-`npm i`
+`npm i --legacy-peer-deps`
 
 9 - build the package
 
