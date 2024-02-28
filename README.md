@@ -61,9 +61,9 @@
 >If new plugins are added, dont forget to add them in the package.json.
 >Remember that the new plugin must match the version of all the others.
 
-8 - Install dependencies with npm
+8 - Install dependencies with yarn
 
-`npm i --legacy-peer-deps`
+`yarn install`
 
 9 - build the package
 
