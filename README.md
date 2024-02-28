@@ -1,70 +1,130 @@
-CKEditor&nbsp;5 classic editor build
-========================================
+# CKEditor 5 classic editor build custom for Lakaa
 
-[![npm version](https://badge.fury.io/js/%40ckeditor%2Fckeditor5-build-classic.svg)](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic)
-[![Coverage Status](https://coveralls.io/repos/github/ckeditor/ckeditor5/badge.svg?branch=master)](https://coveralls.io/github/ckeditor/ckeditor5?branch=master)
-[![Build Status](https://travis-ci.com/ckeditor/ckeditor5.svg?branch=master)](https://app.travis-ci.com/github/ckeditor/ckeditor5)
+<details>
+ <summary> differences with official classic editor plugin</summary>
 
-The classic editor build for CKEditor&nbsp;5. Read more about the [classic editor build](https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/predefined-builds.html#classic-editor) and see the [demo](https://ckeditor.com/docs/ckeditor5/latest/examples/builds/classic-editor.html).
+### Plugins added:
++ Highlight
++ Underline
++ SimpleUploadAdapter
++ ImageResize
++ TextTransformation
 
-![CKEditor&nbsp;5 classic editor build screenshot](https://c.cksource.com/a/1/img/npm/ckeditor5-build-classic.png)
+### Plugins Removed:
+- UploadAdapter
+- Autoformat
+- CloudServices
+- BlockQuote
+- CKBox
+- CKFinder
+- CloudServices
+- EasyImage
+- ImageCaption
+- Indent
+- MediaEmbed
+- PasteFromOffice
+- PictureEditing
+- TableToolbar
+- TextTransformation
+</details>
 
-## Documentation
 
-See:
+## How to change plugins
 
-* [Installation](https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/quick-start.html) for how to install this package and what it contains.
-* [Editor lifecycle](https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/editor-lifecycle.html) for how to create an editor and interact with it.
-* [Configuration](https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/configuration.html) for how to configure the editor.
-* [Creating custom builds](https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/quick-start.html#building-the-editor-from-source) for how to customize the build (configure and rebuild the editor bundle).
+### install the package localy
 
-## Quick start
+1 - Install the [original repository](https://github.com/ckeditor/ckeditor5)
 
-First, install the build from npm:
+`git clone git@github.com:ckeditor/ckeditor5.git`
 
-```bash
-npm install --save @ckeditor/ckeditor5-build-classic
+2 - Move to the packages folder
+
+`cd ckeditor5/packages`
+
+3 - Clone the custom build from this repository
+
+`git clone git@github.com:Lakaaio/ckeditor5-build-classic-custom.git`
+
+4 - Remove the original classic cuild
+
+`rm -rf ckeditor5-build-classic`
+
+5 - Rename the custom build
+
+`mv ckeditor5-build-classic-custom ckeditor5-build-classic`
+
+6 - Move to the classic build folder
+
+`cd ckeditor5-build-classic`
+
+7 - Make all modification needed to the pacakge
+>Most changes happen in the src/ckeditor.ts file.
+>If new plugins are added, dont forget to add them in the package.json.
+>Remember that the new plugin must match the version of all the others.
+
+8 - Install dependencies with npm
+
+`npm i --legacy-peer-deps`
+
+9 - build the package
+
+`npm run build`
+
+<details>
+ <summary>Test the changes localy</summary>
+
+1 - Move to the frontend of the main project
+
+2 - Disable the linter in `quasar.conf.js`
+
+```
+[...]
+eslint: {
+	// fix: true,
+	// include = [],
+	// exclude = [],
+	// rawOptions = {},
+	warnings: false,
+	errors: false,
+},
+[...]
 ```
 
-And use it in your website:
+3 - Modify the import of the plugin in `Editor.vue`
 
-```html
-<div id="editor">
-	<p>This is the editor content.</p>
-</div>
-<script src="./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
-<script>
-	ClassicEditor
-		.create( document.querySelector( '#editor' ) )
-		.then( editor => {
-			window.editor = editor;
-		} )
-		.catch( error => {
-			console.error( 'There was a problem initializing the editor.', error );
-		} );
-</script>
-```
+~~import ClassicEditor from '@lakaaio/ckeditor5-build-classic';~~
+`import '@lakaaio/ckeditor5-build-classic';`
 
-Or in your JavaScript application:
+4 - Remove the dependecy from git in `package.json`
 
-```js
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+~~"@lakaaio/ckeditor5-build-classic": "github:Lakaaio/ckeditor5-build-classic-custom",~~
 
-// Or using the CommonJS version:
-// const ClassicEditor = require( '@ckeditor/ckeditor5-build-classic' );
+5 - import the local package
 
-ClassicEditor
-	.create( document.querySelector( '#editor' ) )
-	.then( editor => {
-		window.editor = editor;
-	} )
-	.catch( error => {
-		console.error( 'There was a problem initializing the editor.', error );
-	} );
-```
+`npm i <path to package>/packages/ckeditor5-build-classic`
+> this should add this line in package.json
+> "@lakaaio/ckeditor5-build-classic": "file:<path>ckeditor5-build-classic",
 
-**Note:** If you are planning to integrate CKEditor&nbsp;5 deep into your application, it is actually more convenient and recommended to install and import the source modules directly (like it happens in `ckeditor.js`). Read more in the [Advanced setup guide](https://ckeditor.com/docs/ckeditor5/latest/installation/advanced/alternative-setups/integrating-from-source-webpack.html).
+6 - delete the old packages
+`rm -rf node-modules`
 
-## License
+7 - Install dependencies with npm
 
-Licensed under the terms of [GNU General Public License Version 2 or later](http://www.gnu.org/licenses/gpl.html). For full details about the license, please check the `LICENSE.md` file or [https://ckeditor.com/legal/ckeditor-oss-license](https://ckeditor.com/legal/ckeditor-oss-license).
+`npm i`
+
+8 - Test
+> You may want to modify Editor.vue to implement the features of the new plugins
+
+9 - Undo steps 2, 3, 4
+</details>
+
+<details>
+ <summary>Make the changes permanent</summary>
+
+1 - Make sure that the changes are working localy
+
+2 - Add, commit and push to github
+
+3 - List any changes to the plugin list on top of the readme
+
+</details>
