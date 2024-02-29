@@ -8,6 +8,7 @@
 + Underline
 + SimpleUploadAdapter
 + ImageResize
++ TextTransformation
 
 ### Plugins Removed:
 - UploadAdapter
